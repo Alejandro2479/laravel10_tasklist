@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Response;
+
 use \App\Models\Task;
+use \App\Http\Controllers\TaskController;
 use App\Http\Requests\TaskRequest;
 
 /*
@@ -20,6 +22,15 @@ Route::get('/', function(){
   return redirect()->route('tasks.index');
 });
 
+Route::resource('tasks', TaskController::class);
+
+Route::put('/tasks/{task}/toggle-complete', [TaskController::class, 'toggleComplete'])->name('tasks.toggle-complete');
+
+Route::fallback(function () {
+    return 'Nothing here!';
+});
+
+/*
 Route::get('/tasks', function () {
     return view('index', [
         'tasks' => Task::latest()->paginate(10)
@@ -36,10 +47,6 @@ Route::get('/tasks/{task}/edit', function(Task $task) {
 Route::get('/tasks/{task}', function(Task $task) {
     return view('show', ['task' => $task]);
 })->name('tasks.show');
-
-Route::fallback(function () {
-    return 'Nothing here!';
-});
 
 Route::post('/tasks', function(TaskRequest $request) {
     $task = Task::create($request->validated());
@@ -68,3 +75,4 @@ Route::put('/tasks/{task}/toggle-complete', function(Task $task) {
 
     return redirect()->back()->with('success', 'Task Updated Successfully!');
 })->name('tasks.toggle-complete');
+*/
