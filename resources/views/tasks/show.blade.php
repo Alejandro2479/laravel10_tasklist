@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $task->title)
+@section('title', 'Task List App - Show')
 
+@section('htitle', $task->title)
 @section('content')
     <p class="mb-4 text-slate-700">{{ $task->description }}</p>
 
@@ -39,6 +40,6 @@
     </div>
 
     <div>
-        <a class="link" href="{{ route('tasks.index') }}">← Go Back to the Task List!</a>
+        <a class="link" href="{{ route('tasks.index') }}">← Go back to the Task List</a>
     </div>
 @endsection

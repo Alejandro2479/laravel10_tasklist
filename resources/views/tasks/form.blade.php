@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', isset($task) ? 'Edit Task' : 'Add Task')
+@section('title', isset($task) ? 'Tasks List App - Edit' : 'Tasks List App - Create')
 
+@section('htitle', isset($task) ? 'Edit Task' : 'Create Task')
 @section('content')
     <form action="{{ isset($task) ? route('tasks.update', ['task' => $task->id]) : route('tasks.store') }}" method="POST">
         @csrf
@@ -33,9 +34,9 @@
         <div>
             <button class="btn mb-4" type="submit">
                 @isset($task)
-                    Update task
+                    Update Task
                 @else
-                    Add task
+                    Create Task
                 @endisset
             </button>
         </div>
